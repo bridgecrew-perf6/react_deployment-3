@@ -1,0 +1,58 @@
+{
+  "name": "tiptop-front",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^25.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "beauty-stars": "^1.1.0",
+    "braintree-web": "^3.68.0",
+    "braintree-web-drop-in-react": "^1.2.1",
+    "imagesloaded": "^4.1.4",
+    "isotope-layout": "^3.0.6",
+    "moment": "^2.29.1",
+    "qrcode.react": "^1.0.1",
+    "ramda": "^0.27.1",
+    "react": "^17.0.2",
+    "react-data-table-component": "^7.4.5",
+    "react-dom": "^17.0.2",
+    "react-html-parser": "^2.0.2",
+    "react-iframe": "^1.8.0",
+    "react-indexed-db": "^1.0.12",
+    "react-phone-number-input": "^3.1.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "4.0.3",
+    "react-show-more-text": "^1.4.6",
+    "react-tabs": "^3.2.0",
+    "styled-components": "^5.3.3",
+    "uuid": "^8.3.1",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
