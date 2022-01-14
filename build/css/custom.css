@@ -1,0 +1,398 @@
+/*--------------------------------------------------------------
+  Template Name: Tmart-Minimalist eCommerce HTML5 Template.
+  Template URI: #
+  Description: Tmart is a unique website template designed in HTML with a simple & beautiful look. There is an excellent solution for creating clean, wonderful and trending material design corporate, corporate any other purposes websites.
+  Author: Theme365
+  Version: 1.0
+---------------------------------------------------------------*/
+
+/* ----------------------------------------------------
+	You can put your custom css code here: 
+-------------------------------------------------------*/
+
+.ht__bradcaump__area {
+  background: rgba(0, 0, 0, 0) url(../images/bg/2.jpg) no-repeat scroll center center / cover;
+  align-items: center;
+  height: 220px;
+}
+
+.slider__full--screen{
+  background: rgba(0, 0, 0, 0) url(../images/slider/bg/1.png) no-repeat scroll center center / cover;
+  background-size:100%;
+}
+
+.slider__bg--1{
+  background: rgba(0, 0, 0, 0) url(../images/slider/bg/1.png) no-repeat scroll center center / cover;
+  background-size:100%;
+}
+
+.slider__bg--2{
+  background: rgba(0, 0, 0, 0) url(../images/slider/bg/2.png) no-repeat scroll center center / cover;
+  background-size:100%;
+}
+
+.slider__bg--3{
+  background: rgba(0, 0, 0, 0) url(../images/slider/bg/3.png) no-repeat scroll center center / cover;
+}
+
+.htc__login__register {
+  background: rgba(0, 0, 0, 0) url(../images/bg/5.jpg) no-repeat scroll center center / cover ;
+}
+
+/*--------------------------------------------------------------------------------------------------
+  Custom Input Styles
+--------------------------------------------------------------------------------------------------*/
+
+.pasadena-single-box input[type="text"],
+.pasadena-single-box input[type="number"],
+.pasadena-single-box input[type="email"],
+.pasadena-single-box input[type="password"] {
+    background: transparent none repeat scroll 0 0;
+    border-radius: 0;
+    color: #767676;
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+
+.pasadena-single-box textarea {
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #c1c1c1;
+    border-radius: 0;
+    font-size: 12px;
+    min-height: 100px;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.pasadena-single-box select {
+    margin-right: 30px;
+}
+
+.input-file {
+    border-radius: 0;
+    height: 40px;
+}
+
+.pasadena-single-box select {
+    border: 1px solid #c1c1c1;
+    border-radius: 0;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+
+.pasadena-section-title-3 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+
+.tiptiptop-amount-bill {
+    background-color: #d2a98a;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
+    border-style: solid;
+    border-color: #ff000000 #ff000000 #421604;
+}
+
+
+.tiptiptop-amount-tip {
+    background-color: #d2a98a;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    border-style: solid;
+    border-color: #ff000000 #ff000000 #421604;
+}
+
+.font-white {
+    color: rgb(221, 221, 221);
+}
+
+.font-18 {
+    font-size: 29px;
+    font-weight: 500;
+}
+.tiptiptop-bottom-tip {
+    background-color: #d2a98a;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
+    border-style: solid;
+    border-color: #ff000000 #ff000000 #ff000000;
+}
+
+.label1 {
+    border: 0;
+    color: #421604;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: right;
+    
+}
+
+.top-5 {
+    margin-top: 3%;
+}
+.label2 {
+    border: 0;
+    margin-top: 3%;
+    color: #421604;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    
+}
+
+.input-amount-bill {
+    background-color: #d2a98a;
+    border: 0;
+    width: 30%  !important;
+}
+
+
+.botonbill{
+    width:50px;
+    height:30px;
+    background-color:#d2a98a;
+    margin: 15px 5px;
+   
+    border-radius: 15px;
+    font-size:11px;
+
+    text-align: center;
+    border: 1.5px solid #d6d6d6;
+   
+  }
+  .botonbill:hover{
+    opacity: 0.50;
+    -moz-opacity: .50;
+    filter:alpha (opacity=50);
+  }
+ 
+.bg_tip {
+    background-color: #d2a98a;
+}
+
+.pasadena-checkout-form-inner {
+    background-color: #d2a98a;
+    margin-top: 0px;
+}
+
+.single-checkout-box input + select {
+    margin-left: 34px;
+    width: 47.5%;
+    margin-right: 0px;
+}
+
+.checkout-field-error-msg {
+    margin-left: 2px;
+    font-family: 'Poppins', sans-serif;
+    color: red;
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 0px;
+    line-height: 20px;
+}
+
+.single-checkout-box-div{
+    width: 47.5%;
+    margin-bottom: 28px;
+}
+
+.single-checkout-box-div input[type="text"],
+.single-checkout-box-div input[type="email"],
+.single-checkout-box-div input[type="tel"],
+.single-checkout-box-div input[type="password"] {
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #c1c1c1;
+    border-radius: 0;
+    color: #767676;
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    width: 100%;
+}
+
+.input-checkout-container
+{
+    display: flex;
+}
+
+
+.input-checkout-container div + div {
+    margin-left: 34px;
+}
+
+.single-checkout-box-div select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    background: rgba(0, 0, 0, 0) url("/images/icons/select-option.png") no-repeat scroll 96% 14px / 11px 9px;
+    border: 1px solid #c1c1c1;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+
+
+.checkout__cart__wrap {
+    margin-top: 0px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.inline-product-qty {
+    background: #e5e5e5 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 3px;
+    color: #6f6f6f;
+    font-size: 15px;
+    font-weight: normal;
+    padding: 0 0px 0 10px;
+    width: 50px;
+    margin-left: 5px;
+}
+
+.inline-product-qty:focus {
+    background: #e5e5e5 none repeat scroll 0 0;
+    border: medium none;
+}
+
+
+.checkout-btn .fv-btn {
+    background-color: #000;
+    border: 1px solid #000;
+    color: #fff;
+    font-size: 14px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 70px;
+    transition: all 0.3s ease 0s;
+}
+
+.checkout-btn .fv-btn:hover {
+    border: 1px solid #ff4136;
+    color: #fff;
+    background: #ff4136;
+}
+
+.checkout-subtotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.checkout-subtotal .subtotal {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.product-img-link {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    z-index: 100;
+}
+
+.checkout-name {
+    border-top-width: 0;
+    color: #000;
+    font-size: 13px;
+}
+
+.checkout-single-product {
+    /*display: flex;*/
+    justify-content: space-between;
+ /*   padding-top: 15px;*/
+}
+
+.select-size {
+    background: #e5e5e5 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 3px;
+    color: #6f6f6f;
+    font-size: 15px;
+    font-weight: normal;
+    padding: 0 0px 0 2px;
+    width: 55px;
+    margin-left: 5px;
+}
+
+.checkout-field-error {
+    border: 1px solid red !important;
+}
+
+.link-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s ease-out 0s;
+}
+
+.link-button i:hover,
+.link-button i:focus,
+.link-button i:active {
+    color: #ff4136!important;
+}
+
+.remove__btn .link-button i:hover,
+.remove__btn .link-button i:focus,
+.remove__btn .link-button i:active {
+    transform: rotate(-180deg);
+}
+
+.remove__btn .link-button i {
+    color: #ccc;
+    font-size: 22px;
+    transition: all 0.5s ease 0s;
+}
+
+.offsetmenu__close__btn .link-button i {
+    color: #666666;
+    font-size: 36px;
+}
+
+
+.full-cart-icon {
+    animation: full-cart-anim 2s infinite;
+}
+
+@keyframes full-cart-anim {
+    0% { color: #ff4136; }
+    50% { color: #666666; }
+    100% { color: #ff4136; }
+  }
+
+.ck-editor ul>li{
+	list-style: disc !important;
+}
+
+.ck-editor ul{
+	padding: revert;
+}
+
+.ck.ck-content.ck-editor__editable{
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.rating__and__review {
+    margin-bottom: 5px;
+}
