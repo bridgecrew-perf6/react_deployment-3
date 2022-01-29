@@ -14,8 +14,12 @@ const Auth = () => {
     const section = () => (
 
         <div className="htc__login__register bg__white ptb--90" >
-            <div className="container">
+            <div className="container boxlogin">
                 <div className="row">
+                    <div>
+                    <br></br>
+                    </div>
+                
                     <div className="col-md-6 col-md-offset-3">
                         <ul className="login__register__menu" role="tablist">
                             <li role="presentation" className="login active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
