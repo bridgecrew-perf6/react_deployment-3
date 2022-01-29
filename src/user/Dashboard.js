@@ -12,7 +12,7 @@ import { authenticate, isAuthenticated, signout } from '../auth/functions';
 // API Impports
 import { updateUser, getUser } from '../APICalls';
 
-import Sidebaruser from "../../src/admin/Sidebaruser";
+import Sidebaruser2 from "../../src/admin/Sidebaruser2";
 
 // TODO: Delete?
 //import { useHistory } from "react-router-dom";
@@ -181,7 +181,8 @@ const Dashboard = ({history}) => {
                     {alertError(error)}
                 </div>
                 <div className="row">
-                <Sidebaruser/>
+                <Sidebaruser2/>
+                <div><br></br></div>
                     <div className="col-md-8 col-lg-8">
                         <div className="ckeckout-left-sidebar">
                             <div className="row">

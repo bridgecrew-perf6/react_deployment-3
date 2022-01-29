@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 // Custom Component Imports
 import OrderDataTable from './OrderDataTable';
 import Layout from "../../core/Layout";
-import Sidebar from "../Sidebar";
+import Sidebar2 from "../Sidebar2";
 
 // TODO: Explanation
 const Orders = (props) => {
@@ -16,7 +16,7 @@ const Orders = (props) => {
             <Fragment>  
                 <div className="container ptb--40">
                     <div className="row">
-                        <Sidebar/>
+                        <Sidebar2/>
                     </div>
                     <div className="row">
                         <OrderDataTable />

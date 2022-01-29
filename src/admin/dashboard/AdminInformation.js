@@ -1,9 +1,9 @@
 // Core Imports
 import React, { useState, useEffect } from "react";
-
+import { Link } from 'react-router-dom';
 // Custom Component Imports
 import Layout from "../../core/Layout";
-import Sidebar from "../Sidebar";
+import Sidebar2 from "../Sidebar2";
 
 // Function Imports
 import { authenticate, isAuthenticated, signout } from "../../auth/functions";
@@ -17,14 +17,14 @@ import { updateUser } from "../../APICalls";
 //import moment from "moment";
 
 // TODO: Explanation
-const AdminInformation = ({history}) => {
+const AdminInformation = ({ history }) => {
 
     // Init state
-    const {user, token} = isAuthenticated();
+    const { user, token } = isAuthenticated();
     const [email, setEmail] = useState(user.email);
-    const [name, setName] = useState(user.name);    
+    const [name, setName] = useState(user.name);
     const [error, setError] = useState(false);
-    const [success, setSuccess] = useState(false); 
+    const [success, setSuccess] = useState(false);
 
     // React Effects -------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ const AdminInformation = ({history}) => {
         setError(false);
         setSuccess(false);
 
-    },[name]);
+    }, [name]);
 
     // END React Effects ---------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ const AdminInformation = ({history}) => {
         localStorage.removeItem('currentUser');
         signout(() => {
             history.push('/');
-        });         
+        });
     };
 
     const clickUpdate = e => {
@@ -60,8 +60,7 @@ const AdminInformation = ({history}) => {
         e.preventDefault();
         setError(false);
 
-        if (!name)
-        {
+        if (!name) {
             setError("User Name can't be empty");
             return;
         }
@@ -69,13 +68,11 @@ const AdminInformation = ({history}) => {
         // make request to api to update user
         updateUser(user._id, token, { name }).then(data => {
 
-            if (data.error)
-            {
+            if (data.error) {
                 setError(data.error.description);
             }
-            else
-            {
-                authenticate({user: {...data}}, () => {
+            else {
+                authenticate({ user: { ...data } }, () => {
                     setSuccess("User Updated");
                 });
             }
@@ -102,24 +99,41 @@ const AdminInformation = ({history}) => {
             </button>
             {success}
         </div>
-    );    
+    );
+
+    const adminMenu = () => {
+        return (
+            <section className="htc__product__area shop__page bg__white">
+                <div className="container">
+                    <div className="htc__product__container">
+                        <div className="row">
+                            <div className="product__menu gutter-btn text-center">
+                                menu centrado
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     const adminInfo = () => {
         return (
-            <div className="container ptb--40">  
-                <div className="row">          
-                    <Sidebar/>
+            <div className="container ptb--40">
+
+                <div className="row">
+                    <Sidebar2 />
                     <div className="col-xs-12 col-sm-9 col-lg-9 dashboard-container">
                         <h4 className="section-title-4">USER INFORMATION</h4>
                         <div className="pasadena-single-box">
                             <div className="form-row">
                                 <div className="form-group col-xs-12 col-sm-6 col-lg-6">
                                     <label htmlFor="name" className="normal-label">Name</label>
-                                    <input 
-                                        type="text" 
-                                        className="form-control " 
-                                        id="name" 
-                                        placeholder="Enter your name" 
+                                    <input
+                                        type="text"
+                                        className="form-control "
+                                        id="name"
+                                        placeholder="Enter your name"
                                         onChange={e => {
                                             setName(e.target.value);
                                         }}
@@ -128,12 +142,12 @@ const AdminInformation = ({history}) => {
                                 </div>
                                 <div className="form-group col-xs-12 col-sm-6 col-lg-6">
                                     <label htmlFor="email" className="normal-label">Email</label>
-                                    <input 
+                                    <input
                                         disabled="disabled"
-                                        type="email" 
-                                        className="form-control " 
-                                        id="email" 
-                                        placeholder="Enter your email" 
+                                        type="email"
+                                        className="form-control "
+                                        id="email"
+                                        placeholder="Enter your email"
                                         /*onChange={e => {
                                             setEmail(e.target.value);
                                         }}*/
@@ -149,7 +163,7 @@ const AdminInformation = ({history}) => {
                             <div className="col-xs-6 col-sm-6 col-lg-6 text-right">
                                 <button type="button" className="btn btn-dark dashboard-container-button" onClick={clickUpdate}>Save</button>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div className="row">
@@ -214,14 +228,15 @@ const AdminInformation = ({history}) => {
 
     // Main render
     return (
-        <Layout 
-            title = "Home Page"
-            description = "Ecommerce"
-            showBreadcrumb = {true}
-            currentPage = "Admin Dashboard"
+        <Layout
+            title="Home Page"
+            description="Ecommerce"
+            showBreadcrumb={true}
+            currentPage="Admin Dashboard"
         >
+            
             {adminInfo()}
-           
+
         </Layout>
     );
 };

@@ -66,12 +66,7 @@ const Menu = ({history}) => {
                                 <ul className="main__menu">
                                     
                                     <li className="drop">
-                                        <Link 
-                                            className="" 
-                                            style={isActive(history,"/screen-printing/traditional")  || isActive(history,"/screen-printing/traditional")} 
-                                            to="/main">
-                                            Main 
-                                        </Link>
+                                        
                                        
                                     </li>
 
