@@ -497,7 +497,7 @@ const ShoppingSection = ({ printingTypeId }) => {
                                             alt="Product Image"
                                             style={{ maxHeight: '300px', maxWidth: '300px' }}
                                         />
-                                        <QRCode value={`http://52.90.192.153//checkout?worker=${selectedProduct._id}`} size="79" />
+                                        <QRCode value={`http://52.90.192.153/checkout?worker=${selectedProduct._id}`} size="79" />
                                     </div>
 
                                     <div className="product-info">
