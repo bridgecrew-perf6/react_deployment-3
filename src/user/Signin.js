@@ -43,11 +43,13 @@ const Signin = (active = '') => {
             }
             if (user && user.role === "admin" && user.isConfirmed)
             {
-                return <Redirect to="/admin/dashboard/user-information" />
+                //return <Redirect to="/admin/dashboard/user-information" />
+                return <Redirect to="/main" />
             }
             if (user && user.role === "worker" && user.isConfirmed)
             {
-                return <Redirect to="/user/dashboard" />
+                //return <Redirect to="/user/dashboard" />
+                return <Redirect to="/main" />
             }
 
             else
@@ -68,7 +70,7 @@ const Signin = (active = '') => {
             }
             if (user && user.role === "worker" && user.isConfirmed)
             {
-                return <Redirect to="/user/dashboard" />
+                return <Redirect to="/user/dashboard" />                
             }
 
             else
