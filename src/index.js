@@ -1,17 +1,33 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { initDB } from 'react-indexed-db';
 
-import './index.css';
-import * as serviceWorker from './serviceWorker';
-import Routes from './Routes';
-import Config from './config'
+// third party
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-initDB(Config.DB_CONFIG);
+// load mock apis
+import '_mockApis';
+
+// project imports
+import * as serviceWorker from 'serviceWorker';
+import App from 'App';
+import { store, persister } from 'store';
+
+// style + assets
+import 'assets/scss/style.scss';
+import config from 'config';
+
+// ==============================|| REACT DOM RENDER  ||============================== //
 
 ReactDOM.render(
-  <Routes />,
-  document.getElementById('root')
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persister}>
+            <BrowserRouter basename={config.basename}>
+                <App />
+            </BrowserRouter>
+        </PersistGate>
+    </Provider>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
