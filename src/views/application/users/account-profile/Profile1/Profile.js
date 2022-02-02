@@ -180,7 +180,7 @@ const Profile = () => {
                             </Grid>
 
                             <Grid item>
-                                <Chip size="small" label="Admin" color="primary" />
+                                <Chip size="small" label="Admin" />
                             </Grid>
                         </Grid>
                     }

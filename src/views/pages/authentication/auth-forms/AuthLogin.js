@@ -131,8 +131,8 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
 
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: 'carloslopezg3@gmail.com',
+                    password: 'owner14.',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
@@ -234,7 +234,7 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                                 }
                                 label="Remember me"
                             />
-                            <Typography
+                            {/* <Typography
                                 variant="subtitle1"
                                 component={Link}
                                 to={loginProp ? `/pages/forgot-password/forgot-password${loginProp}` : '/forgot'}
@@ -242,7 +242,7 @@ const FirebaseLogin = ({ loginProp, ...others }) => {
                                 sx={{ textDecoration: 'none' }}
                             >
                                 Forgot Password?
-                            </Typography>
+                            </Typography> */}
                         </Stack>
                         {errors.submit && (
                             <Box sx={{ mt: 3 }}>
