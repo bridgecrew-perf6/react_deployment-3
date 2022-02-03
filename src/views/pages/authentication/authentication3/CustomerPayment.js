@@ -50,6 +50,7 @@ const Login = () => {
     const [tip, setTip] = useState(0);
     const [porcent, setPorcent] = useState(10);
     const [price, setPrice] = useState(0);
+    const [idFirebase, setIdFirebase] = useState('');
     const [data, setData] = useState({
         loading: false,
         success: false,
@@ -82,6 +83,7 @@ const Login = () => {
                 console.log('response CurrentWorker:::', response.data);
                 setWorkerId(worker);
                 setCurrentWorker(response.data);
+                setIdFirebase(response.data.idFirebase);
             })
             .catch((error) => {
                 alert('fail get current worker');
@@ -90,12 +92,6 @@ const Login = () => {
     }, []);
 
     
-
-   
-
-    
-
-
 
     const onClickPay = async () => {
         let formData = new FormData();
@@ -108,11 +104,13 @@ const Login = () => {
         formData.append('goodService', Number(1));
         formData.append('porcent', Number(porcent));
         formData.append('valueStar', Number(4));
+        formData.append('idFirebase', idFirebase);
         formData.append('product_id', '61bebaa007211555408b72a0');
         formData.append('product', JSON.stringify(currentWorker));
         console.log('formData::', formData);
-        
-         createOrder(formData, token).then(datacreate => {
+        console.log('currentWorker.idFirerbase',idFirebase);
+    
+         /*createOrder(formData, token).then(datacreate => {
             console.log('datacreate', datacreate)
             setTimeout(() => {
                 setOrderId(datacreate._id);
@@ -167,9 +165,9 @@ const Login = () => {
 
 
 
-        });
+        )};
 
-
+*/
 
     }
 
