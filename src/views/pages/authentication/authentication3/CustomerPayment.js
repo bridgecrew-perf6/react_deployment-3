@@ -110,7 +110,7 @@ const Login = () => {
         console.log('formData::', formData);
         console.log('currentWorker.idFirerbase',idFirebase);
     
-         /*createOrder(formData, token).then(datacreate => {
+         createOrder(formData, token).then(datacreate => {
             console.log('datacreate', datacreate)
             setTimeout(() => {
                 setOrderId(datacreate._id);
@@ -156,7 +156,7 @@ const Login = () => {
                             // showBlockErrorUIModalRef.current.click();
                             console.log(error);
                             setData({ loading: false });
-                        });
+                    });
                 })
                 .catch(error => {
                     // console.log("dropin error: ", error);
@@ -165,9 +165,9 @@ const Login = () => {
 
 
 
-        )};
+        });
 
-*/
+
 
     }
 
