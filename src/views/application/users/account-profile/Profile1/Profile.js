@@ -29,7 +29,7 @@ import { gridSpacing } from 'store/constant';
 import useAuth from '../../../../../hooks/useAuth';
 
 // assets
-import { IconEdit } from '@tabler/icons';
+import { IconMail, IconPhone, IconMapPin } from '@tabler/icons';
 import PhonelinkRingTwoToneIcon from '@mui/icons-material/PhonelinkRingTwoTone';
 import PinDropTwoToneIcon from '@mui/icons-material/PinDropTwoTone';
 import MailTwoToneIcon from '@mui/icons-material/MailTwoTone';
@@ -105,7 +105,7 @@ const Profile = () => {
                         <List component="nav" aria-label="main mailbox folders">
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <MailTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                    <IconMail sx={{ fontSize: '1.3rem' }} />
                                 </ListItemIcon>
                                 <ListItemText primary={<Typography variant="subtitle1">Email</Typography>} />
                                 <ListItemSecondaryAction>
@@ -117,7 +117,7 @@ const Profile = () => {
                             <Divider />
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <PhonelinkRingTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                    <IconPhone sx={{ fontSize: '1.3rem' }} />
                                 </ListItemIcon>
                                 <ListItemText primary={<Typography variant="subtitle1">Phone</Typography>} />
                                 <ListItemSecondaryAction>
@@ -129,7 +129,7 @@ const Profile = () => {
                             <Divider />
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <PinDropTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                    <IconMapPin sx={{ fontSize: '1.3rem' }} />
                                 </ListItemIcon>
                                 <ListItemText primary={<Typography variant="subtitle1">Location</Typography>} />
                                 <ListItemSecondaryAction>
@@ -153,7 +153,7 @@ const Profile = () => {
                         }
                     >
                         <Grid container xs={12} justifyContent="center">
-                            <QRCode value="hey" size={210} />
+                            <QRCode value="http://tiptiptop.co/payment" size={210} />
                         </Grid>
                     </SubCard>
                 </Grid>
@@ -172,7 +172,7 @@ const Profile = () => {
                             </Grid>
                             <Grid item xs zeroMinWidth>
                                 <Typography align="left" variant="subtitle1">
-                                    Carlos Lopez
+                                    Admin TipTipTop
                                 </Typography>
                                 <Typography align="left" variant="subtitle2">
                                     Admin
@@ -188,19 +188,19 @@ const Profile = () => {
                     <List component="nav" aria-label="main mailbox folders">
                         <ListItemButton>
                             <ListItemIcon>
-                                <MailTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                <IconMail sx={{ fontSize: '1.3rem' }} />
                             </ListItemIcon>
                             <ListItemText primary={<Typography variant="subtitle1">Email</Typography>} />
                             <ListItemSecondaryAction>
                                 <Typography variant="subtitle2" align="right">
-                                    carloslopezg3@gmail.com
+                                    info@tiptiptop.co
                                 </Typography>
                             </ListItemSecondaryAction>
                         </ListItemButton>
                         <Divider />
                         <ListItemButton>
                             <ListItemIcon>
-                                <PhonelinkRingTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                <IconPhone sx={{ fontSize: '1.3rem' }} />
                             </ListItemIcon>
                             <ListItemText primary={<Typography variant="subtitle1">Phone</Typography>} />
                             <ListItemSecondaryAction>
@@ -212,7 +212,7 @@ const Profile = () => {
                         <Divider />
                         <ListItemButton>
                             <ListItemIcon>
-                                <PinDropTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+                                <IconMapPin sx={{ fontSize: '1.3rem' }} />
                             </ListItemIcon>
                             <ListItemText primary={<Typography variant="subtitle1">Location</Typography>} />
                             <ListItemSecondaryAction>

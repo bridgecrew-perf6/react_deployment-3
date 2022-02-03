@@ -29,12 +29,8 @@ function getModalStyle() {
     };
 }
 
-const Body = forwardRef(({ modalStyle, handleClose }, ref) => (
+const Body = forwardRef(({ modalStyle, handleClose, getData }, ref) => (
     <div ref={ref} tabIndex={-1}>
-        {/**
-         * style={modalStyle}
-         * Property 'style' does not exist on type 'IntrinsicAttributes & MainCardProps & RefAttributes<HTMLDivElement>
-         */}
         <MainCard
             style={modalStyle}
             sx={{
@@ -53,12 +49,7 @@ const Body = forwardRef(({ modalStyle, handleClose }, ref) => (
             }
         >
             <CardContent>
-                <CategoryForm handleClose={handleClose} />
-                {/* <Typography variant="body1">Laboris non ad et aute sint aliquip mollit voluptate velit dolore magna fugiat ex.</Typography>
-                <Typography variant="body2" sx={{ mt: 2 }}>
-                    Commodo amet veniam nostrud mollit quis sint qui nulla elit esse excepteur ullamco esse magna. Nisi duis aute est in
-                    mollit irure enim tempor in.
-                </Typography> */}
+                <CategoryForm handleClose={handleClose} getData={() => getData()} />
             </CardContent>
             <Divider />
         </MainCard>
@@ -72,7 +63,7 @@ Body.propTypes = {
 
 // ==============================|| SIMPLE MODAL ||============================== //
 
-export default function SimpleModal() {
+export default function SimpleModal(props) {
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = useState(getModalStyle);
 
@@ -91,7 +82,7 @@ export default function SimpleModal() {
                 <AddIcon />
             </Button>
             <Modal open={open} onClose={handleClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
-                <Body modalStyle={modalStyle} handleClose={handleClose} />
+                <Body modalStyle={modalStyle} handleClose={handleClose} getData={() => props.getData()} />
             </Modal>
         </Grid>
     );

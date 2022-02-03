@@ -19,6 +19,7 @@ import { gridSpacing } from 'store/constant';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 import LibraryBooksTwoToneIcon from '@mui/icons-material/LibraryBooksTwoTone';
+import { IconUser, IconLock } from '@tabler/icons';
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import MailTwoToneIcon from '@mui/icons-material/MailTwoTone';
 
@@ -48,7 +49,7 @@ function a11yProps(index) {
 const tabsOption = [
     {
         label: 'Profile',
-        icon: <AccountCircleTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+        icon: <IconUser sx={{ fontSize: '1.3rem' }} color="#8b0b35" />
     },
     // {
     //     label: 'Personal Details',
@@ -60,7 +61,7 @@ const tabsOption = [
     // },
     {
         label: 'Change Password',
-        icon: <LockTwoToneIcon sx={{ fontSize: '1.3rem' }} />
+        icon: <IconLock sx={{ fontSize: '1.3rem' }} color="#8b0b35" />
     }
     // {
     //     label: 'Settings',
@@ -84,10 +85,10 @@ const Profile1 = () => {
                 <Grid item xs={12}>
                     <Tabs
                         value={value}
-                        indicatorColor="primary"
-                        textColor="primary"
+                        indicatorColor="#8b0b35"
+                        textColor="#8b0b35"
                         onChange={handleChange}
-                        aria-label="simple tabs example"
+                        // aria-label="simple tabs example"
                         variant="scrollable"
                         sx={{
                             mb: 3,
@@ -116,7 +117,15 @@ const Profile1 = () => {
                         }}
                     >
                         {tabsOption.map((tab, index) => (
-                            <Tab key={index} component={Link} to="#" icon={tab.icon} label={tab.label} {...a11yProps(index)} />
+                            <Tab
+                                key={index}
+                                style={{ color: '#8b0b35' }}
+                                component={Link}
+                                to="#"
+                                icon={tab.icon}
+                                label={tab.label}
+                                {...a11yProps(index)}
+                            />
                         ))}
                     </Tabs>
                     <TabPanel value={value} index={0}>

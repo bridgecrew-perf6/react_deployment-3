@@ -23,19 +23,12 @@ const rows = [
 
 // ==============================|| TABLE - BASIC ||============================== //
 
-export default function TableBasic() {
+export default function TableBasic(props) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios
-            .get('http://52.90.192.153/api/categories')
-            .then((response) => {
-                setData(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+        setData(props.data);
+    }, [props]);
 
     return (
         <Grid container spacing={gridSpacing}>

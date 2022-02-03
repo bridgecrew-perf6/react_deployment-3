@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 // material-ui
 import { Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import Moment from 'react-moment';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
@@ -42,6 +44,8 @@ export default function TableBasic() {
             });
     }, []);
 
+    // const getDate = (d) => new Date(d);
+
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
@@ -74,7 +78,9 @@ export default function TableBasic() {
                                         </TableCell>
                                         <TableCell align="right">{row.status}</TableCell>
                                         <TableCell align="right">{row.is_paid ? 'Yes' : 'No'}</TableCell>
-                                        <TableCell align="right">{Date(row.order_date).substring(0, 15)}</TableCell>
+                                        <TableCell align="right">
+                                            <Moment format="YYYY/MM/DD HH:hh">{row.order_date}</Moment>
+                                        </TableCell>
                                         <TableCell align="right">{`$${row.order_total}`}</TableCell>
                                         {/* <TableCell align="right">
                                             <SecondaryAction link="https://next.material-ui.com/components/tables/" />

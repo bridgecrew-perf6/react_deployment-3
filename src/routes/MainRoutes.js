@@ -11,6 +11,7 @@ const Tips = Loadable(lazy(() => import('views/tips')));
 const Workers = Loadable(lazy(() => import('views/workers')));
 const Categories = Loadable(lazy(() => import('views/categories')));
 const AppUserAccountProfile1 = Loadable(lazy(() => import('views/application/users/account-profile/Profile1')));
+const Qr = Loadable(lazy(() => import('views/qr')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -41,6 +42,10 @@ const MainRoutes = {
         {
             path: '/user/account-profile/profile1',
             element: <AppUserAccountProfile1 />
+        },
+        {
+            path: '/qr',
+            element: <Qr />
         }
     ]
 };

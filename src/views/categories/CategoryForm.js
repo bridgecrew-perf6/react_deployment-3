@@ -29,7 +29,7 @@ const validationSchema = yup.object({
 
 // ==============================|| FORM VALIDATION - LOGIN FORMIK  ||============================== //
 
-const LoginForms = ({ handleClose }) => {
+const LoginForms = ({ handleClose, getData }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
@@ -41,6 +41,7 @@ const LoginForms = ({ handleClose }) => {
             .post('http://52.90.192.153/api/categories', { name, descr: description })
             .then((response) => {
                 console.log('paso', response);
+                getData();
                 handleClose();
             })
             .catch((error) => {
@@ -86,6 +87,25 @@ const LoginForms = ({ handleClose }) => {
                             onChange={(e) => {
                                 setName(e.target.value);
                             }}
+                            sx={{
+                                '& label.Mui-focused': {
+                                    color: '#8b0b35'
+                                },
+                                '& .MuiInput-underline:after': {
+                                    borderBottomColor: '#747474'
+                                },
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: '#c4c4c4'
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: '#8b0b35'
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: '#8b0b35'
+                                    }
+                                }
+                            }}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -99,12 +119,31 @@ const LoginForms = ({ handleClose }) => {
                             onChange={(e) => {
                                 setDescription(e.target.value);
                             }}
+                            sx={{
+                                '& label.Mui-focused': {
+                                    color: '#8b0b35'
+                                },
+                                '& .MuiInput-underline:after': {
+                                    borderBottomColor: '#747474'
+                                },
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: '#c4c4c4'
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: '#8b0b35'
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: '#8b0b35'
+                                    }
+                                }
+                            }}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <Stack direction="row" justifyContent="flex-end">
                             <AnimateButton>
-                                <Button variant="contained" type="submit" onClick={() => handleSave()} style={{ background: '#96d2c6' }}>
+                                <Button variant="contained" type="submit" onClick={() => handleSave()} style={{ background: '#8b0b35' }}>
                                     Save
                                 </Button>
                             </AnimateButton>

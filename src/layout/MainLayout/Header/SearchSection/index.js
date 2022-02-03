@@ -148,7 +148,7 @@ const SearchSection = () => {
                                                 <Box sx={{ p: 2 }}>
                                                     <Grid container alignItems="center" justifyContent="space-between">
                                                         <Grid item xs>
-                                                            <MobileSearch value={value} setValue={setValue} popupState={popupState} />
+                                                            {/* <MobileSearch value={value} setValue={setValue} popupState={popupState} /> */}
                                                         </Grid>
                                                     </Grid>
                                                 </Box>

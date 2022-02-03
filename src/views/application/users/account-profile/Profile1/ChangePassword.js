@@ -25,26 +25,100 @@ const ChangePassword = () => {
                     <form noValidate autoComplete="off">
                         <Grid container spacing={gridSpacing} sx={{ mb: 1.75 }}>
                             <Grid item xs={12} md={6}>
-                                <TextField type="password" id="outlined-basic7" fullWidth label="Current Password" />
+                                <TextField
+                                    type="password"
+                                    id="outlined-basic7"
+                                    fullWidth
+                                    label="Current Password"
+                                    sx={{
+                                        '& label.Mui-focused': {
+                                            color: '#8b0b35'
+                                        },
+                                        '& .MuiInput-underline:after': {
+                                            borderBottomColor: '#747474'
+                                        },
+                                        '& .MuiOutlinedInput-root': {
+                                            '& fieldset': {
+                                                borderColor: '#c4c4c4'
+                                            },
+                                            '&:hover fieldset': {
+                                                borderColor: '#8b0b35'
+                                            },
+                                            '&.Mui-focused fieldset': {
+                                                borderColor: '#8b0b35'
+                                            }
+                                        }
+                                    }}
+                                />
                             </Grid>
                         </Grid>
                         <Grid container spacing={gridSpacing} sx={{ mb: 1.75 }}>
                             <Grid item xs={12} md={6}>
-                                <TextField type="password" id="outlined-basic8" fullWidth label="New Password" />
+                                <TextField
+                                    type="password"
+                                    id="outlined-basic8"
+                                    fullWidth
+                                    label="New Password"
+                                    sx={{
+                                        '& label.Mui-focused': {
+                                            color: '#8b0b35'
+                                        },
+                                        '& .MuiInput-underline:after': {
+                                            borderBottomColor: '#747474'
+                                        },
+                                        '& .MuiOutlinedInput-root': {
+                                            '& fieldset': {
+                                                borderColor: '#c4c4c4'
+                                            },
+                                            '&:hover fieldset': {
+                                                borderColor: '#8b0b35'
+                                            },
+                                            '&.Mui-focused fieldset': {
+                                                borderColor: '#8b0b35'
+                                            }
+                                        }
+                                    }}
+                                />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <TextField type="password" id="outlined-basic9" fullWidth label="Confirm Password" />
+                                <TextField
+                                    type="password"
+                                    id="outlined-basic9"
+                                    fullWidth
+                                    label="Confirm Password"
+                                    sx={{
+                                        '& label.Mui-focused': {
+                                            color: '#8b0b35'
+                                        },
+                                        '& .MuiInput-underline:after': {
+                                            borderBottomColor: '#747474'
+                                        },
+                                        '& .MuiOutlinedInput-root': {
+                                            '& fieldset': {
+                                                borderColor: '#c4c4c4'
+                                            },
+                                            '&:hover fieldset': {
+                                                borderColor: '#8b0b35'
+                                            },
+                                            '&.Mui-focused fieldset': {
+                                                borderColor: '#8b0b35'
+                                            }
+                                        }
+                                    }}
+                                />
                             </Grid>
                         </Grid>
                     </form>
                     <Grid spacing={2} container justifyContent="flex-end" sx={{ mt: 3 }}>
                         <Grid item>
                             <AnimateButton>
-                                <Button variant="contained">Change Password</Button>
+                                <Button style={{ background: '#8b0b35' }} variant="contained">
+                                    Change Password
+                                </Button>
                             </AnimateButton>
                         </Grid>
                         <Grid item>
-                            <Button sx={{ color: theme.palette.error.main }}>Clear</Button>
+                            <Button sx={{ color: '#8b0b35' }}>Clear</Button>
                         </Grid>
                     </Grid>
                 </SubCard>

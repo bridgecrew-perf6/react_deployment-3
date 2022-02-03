@@ -12,10 +12,15 @@ import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import { SNACKBAR_OPEN } from 'store/actions';
 import { gridSpacing } from 'store/constant';
 
+import { createProduct } from '../APICalls'
+
 // third-party
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
+
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 // assets
 import LinkIcon from '@mui/icons-material/Link';
@@ -41,6 +46,22 @@ const locals = [
 
 // ==============================|| FORM VALIDATION - LOGIN FORMIK  ||============================== //
 
+/*
+useEffect(() => {
+    axios
+        .get('http://52.90.192.153/api/braintree/getToken')
+        .then((response) => {
+            setToken(response.data.clientToken);
+            setData({ clientToken: data.clientToken });
+            console.log('token::::', response.data.clientToken)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}, []);*/
+
+const firebaseRegister = async (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
+
 const LoginForms = ({ handleClose }) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -50,30 +71,47 @@ const LoginForms = ({ handleClose }) => {
     const [paypal, setPaypal] = useState('');
     const [role, setRole] = useState('');
     const [password, setPassword] = useState('');
+    const [token, setToken] = useState('');
 
     const handleChange = (event) => {
         setSelectedCategory(event.target.value);
     };
 
     const handleSave = async () => {
+
+        firebaseRegister(mail, password).then(datacusuarioreate => {
+            
+            setTimeout(() => {
+                console.log('datacusuarioreate', datacusuarioreate.user.uid)
+                //setOrderId(datacreate._id);
+            }, 1500);
+        
+        });
+
         const formData = new FormData();
-        formData.append('name', name);
+
         formData.append('email', mail);
-        formData.append('phoneNumber', phone);
-        formData.append('emailPaypal', paypal);
-        formData.append('role', role);
         formData.append('password', password);
+        formData.append('name', name);
+        formData.append('phoneNumber', phone);
+        formData.append('printingType', '5ee5a2c62055cc54dc5ecf4a');
         formData.append('category', '5ef37be1527af5690c290a7e');
-        axios
-            .post('http://52.90.192.153/api/products', { product: formData })
-            .then((response) => {
-                alert();
-                console.log(response);
-            })
-            .catch((error) => {
-                alert('fallo');
-                console.log(error);
-            });
+        formData.append('qty', Number(1));
+        formData.append('price', Number(1));
+        formData.append('weight', Number(1));
+        formData.append('local', 'downtowndisney');
+        formData.append('emailPaypal',paypal);
+        formData.append('role', role);
+        formData.append('descr', 'perfil personal');
+       let token0 ='123456';
+        createProduct(token0, formData).then(datacreate => {
+            
+            setTimeout(() => {
+                console.log('datacreate', datacreate)
+                //setOrderId(datacreate._id);
+            }, 1500);
+        
+        });
     };
 
     // useEffect(() => {
@@ -87,6 +125,19 @@ const LoginForms = ({ handleClose }) => {
     //             console.log(error);
     //         });
     // }, []);
+
+    useEffect(() => {
+        axios
+            .get('http://52.90.192.153/api/braintree/getToken')
+            .then((response) => {
+                setToken(response.data.clientToken);
+               
+                console.log('token::::', response.data.clientToken)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     const dispatch = useDispatch();
 

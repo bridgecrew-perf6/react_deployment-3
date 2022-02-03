@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DropIn from 'braintree-web-drop-in-react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery, TextField, Button } from '@mui/material';
+import { createOrder, processPayment, updateOrderStatus } from '../../../APICalls'
 
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
@@ -16,6 +17,24 @@ import axios from 'axios';
 
 // assets
 
+
+const getQueryVariable = (variable) => {
+    var query = window.location.search.substring(1);
+    //console.log(query)//"app=article&act=news_content&aid=160990"
+    var vars = query.split("&");
+    //console.log(vars) //[ 'app=article', 'act=news_content', 'aid=160990' ]
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        //console.log(pair)//[ 'app', 'article' ][ 'act', 'news_content' ][ 'aid', '160990' ] 
+        if (pair[0] == variable) {
+            //console.log('pair1',pair[1]);
+            return pair[1];
+        }
+    }
+    return (false);
+}
+
+
 // ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {
@@ -25,6 +44,7 @@ const Login = () => {
     const [change, setChange] = useState(false);
     const [token, setToken] = useState('');
     const [orderId, setOrderId] = useState('');
+    const [workerId, setWorkerId] = useState('');
     const [currentWorker, setCurrentWorker] = useState('');
     const [amount, setAmount] = useState(0);
     const [tip, setTip] = useState(0);
@@ -53,11 +73,14 @@ const Login = () => {
     }, []);
 
     useEffect(() => {
+        let worker = getQueryVariable('worker');
+        
         axios
-            .get(`http://52.90.192.153/api/products/61bebb0607211555408b72b1`)
+            .get(`http://52.90.192.153/api/products/${worker}`)
             .then((response) => {
 
                 console.log('response CurrentWorker:::', response.data);
+                setWorkerId(worker);
                 setCurrentWorker(response.data);
             })
             .catch((error) => {
@@ -66,88 +89,30 @@ const Login = () => {
             });
     }, []);
 
-    const processPayment = async (paymentData) => {
+    
 
-        return fetch(`http://52.90.192.153/api/braintree/processPayment`, {
-            method: "POST",
-            headers:
-            {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(paymentData)
-        })
-            .then(response => {
-                console.log('Response Process Payment:::::', response);
-                return response.json();
-            })
-            .catch((err) => {
-                //alert('fail process payment');
-                console.log(err)
-            });
-    };
-
-    const createOrder = async (order, token) => {
-
-        return fetch(`http://52.90.192.153/api/orders`,
-            {
-                method: 'POST',
-                headers:
-                {
-                    Accept: 'application/json',
-                    'x-access-token': token
-                },
-                body: order
-            })
-            .then(response => {
-
-                return response.json();
-            })
-            .catch(err => {
-
-                console.log(err);
-            });
-    };
-
-    const updateOrderStatus = async (orderId, body) => {
    
-        return fetch(`http://52.90.192.153/api/orders/${orderId}/status`,
-            {
-                method: 'PUT',
-                headers:
-                {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            })
-            .then(response => {
-                console.log('Response Update Order:::::', response);
-                return response.json();
-            })
-            .catch((err) => {
-                //alert('fail update order');
-                console.log(err)
-            });
-    };
+
+    
 
 
 
-    const onClickPay = () => {
+    const onClickPay = async () => {
         let formData = new FormData();
-        formData.append('price', price);
-        formData.append('term', '1');
-        formData.append('trFee', '1');
-        formData.append('dish', 0);
-        formData.append('atmosphere', 0);
-        formData.append('tasty', 'tasty');
-        formData.append('goodService', 'goodService');
-        formData.append('porcent', porcent);
-        formData.append('valueStar', '4');
-        formData.append('product_id', '61bebb0607211555408b72b1');
+        formData.append('price', Number(price));
+        formData.append('term', Number(1));
+        formData.append('trFee', Number(1));
+        formData.append('dish', Number(1));
+        formData.append('atmosphere', Number(1));
+        formData.append('tasty', Number(1));
+        formData.append('goodService', Number(1));
+        formData.append('porcent', Number(porcent));
+        formData.append('valueStar', Number(4));
+        formData.append('product_id', '61bebaa007211555408b72a0');
         formData.append('product', JSON.stringify(currentWorker));
         console.log('formData::', formData);
-        createOrder(formData, token).then(datacreate => {
+        
+         createOrder(formData, token).then(datacreate => {
             console.log('datacreate', datacreate)
             setTimeout(() => {
                 setOrderId(datacreate._id);
@@ -168,14 +133,11 @@ const Login = () => {
                     );
                     console.log('price', price);
 
-                    //const paymentData = {
-                    //  paymentMethodNonce: nonce,
-                    //orderId: datacreate._id
-                    //};
                     const paymentData = {
-                        paymentMethodNonce: nonce,
-                        amount: price
+                      paymentMethodNonce: nonce,
+                    orderId: datacreate._id
                     };
+                    
                     processPayment(paymentData)
                         .then(response => {
                             console.log('response payment process:', response);
@@ -183,7 +145,7 @@ const Login = () => {
                                 //showBlockSuccessUIModalRef.current.click();
                                 //setNoPayment(false);
                                 alert('Payment successful');
-                                let body = { status: "Open", is_paid: true }
+                                let body = { status: "Open", is_paid: "true" }
                                 updateOrderStatus(datacreate._id, body).then(response => {
                                     console.log('response update orfder status', response);
                                 });
