@@ -86,31 +86,29 @@ const LoginForms = ({ handleClose }) => {
                 //setOrderId(datacreate._id);
             }, 1500);
         
-        });
+            const formData = new FormData();
 
-        const formData = new FormData();
-
-        formData.append('email', mail);
-        formData.append('password', password);
-        formData.append('name', name);
-        formData.append('phoneNumber', phone);
-        formData.append('printingType', '5ee5a2c62055cc54dc5ecf4a');
-        formData.append('category', '5ef37be1527af5690c290a7e');
-        formData.append('qty', Number(1));
-        formData.append('price', Number(1));
-        formData.append('weight', Number(1));
-        formData.append('local', 'downtowndisney');
-        formData.append('emailPaypal',paypal);
-        formData.append('role', role);
-        formData.append('descr', 'perfil personal');
-       let token0 ='123456';
-        createProduct(token0, formData).then(datacreate => {
-            
-            setTimeout(() => {
-                console.log('datacreate', datacreate)
-                //setOrderId(datacreate._id);
-            }, 1500);
-        
+            formData.append('email', mail);
+            formData.append('password', password);
+            formData.append('idFirebase', datacusuarioreate.user.uid);
+            formData.append('name', name);
+            formData.append('phoneNumber', phone);
+            formData.append('printingType', '5ee5a2c62055cc54dc5ecf4a');
+            formData.append('category', '5ef37be1527af5690c290a7e');
+            formData.append('qty', Number(1));
+            formData.append('price', Number(1));
+            formData.append('weight', Number(1));
+            formData.append('local', 'downtowndisney');
+            formData.append('emailPaypal',paypal);
+            formData.append('role', role);
+            formData.append('descr', 'perfil personal');
+            let token0 ='123456';
+            createProduct(token0, formData).then(datacreate => {
+                setTimeout(() => {
+                    console.log('datacreate', datacreate)
+                    //setOrderId(datacreate._id);
+                }, 1500);
+            });
         });
     };
 
