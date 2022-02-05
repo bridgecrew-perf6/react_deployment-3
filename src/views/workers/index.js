@@ -1,27 +1,43 @@
 // material-ui
-import { Typography } from '@mui/material';
+import { useState, useEffect } from "react";
+import { Typography } from "@mui/material";
 
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
+import MainCard from "ui-component/cards/MainCard";
 
 // components imports
-import TableBasic from './TableBasic';
-import SimpleModal from './SimpleModal';
+import TableBasic from "./TableBasic";
+import SimpleModal from "./SimpleModal";
+
+import axios from "axios";
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-const Workers = () => (
-    <MainCard title="Workers">
-        {/* <Typography variant="body2">
-            Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut enif
-            ad minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue dolor in
-            reprehended in voltage veil esse colum doolie eu fujian bulla parian. Exceptive sin ocean cuspidate non president, sunk in culpa
-            qui officiate descent molls anim id est labours.
-        </Typography> */}
-        <TableBasic />
+const Workers = () => {
+  const [data, setData] = useState([]);
 
-        <SimpleModal />
+  const getData = async () => {
+    axios
+      .get("http://52.90.192.153/api/products")
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  return (
+    <MainCard title="Workers">
+      <TableBasic data={data} />
+
+      <SimpleModal getData={async () => getData()} />
     </MainCard>
-);
+  );
+};
 
 export default Workers;
