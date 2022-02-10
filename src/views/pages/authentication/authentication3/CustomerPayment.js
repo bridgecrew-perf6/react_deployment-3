@@ -109,7 +109,8 @@ const Login = () => {
     formData.append("goodService", Number(1));
     formData.append("porcent", Number(porcent));
     formData.append("valueStar", Number(4));
-    formData.append("product_id", "61bebaa007211555408b72a0");
+    formData.append("idFirebase", workerId);
+    formData.append("product_id", workerId);
     formData.append("product", JSON.stringify(currentWorker));
     console.log("formData::", formData);
 
