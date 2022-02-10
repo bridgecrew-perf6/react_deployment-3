@@ -47,7 +47,7 @@ const Qr = () => {
           >
             <Grid container xs={12} justifyContent="center">
               <QRCode
-                value={`http://52.90.192.153/payment?worker=${apiUser?._id}`}
+                value={`http://52.90.192.153/payment?worker=${user?.id}`}
                 size={210}
               />
             </Grid>

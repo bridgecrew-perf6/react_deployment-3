@@ -48,6 +48,7 @@ const getQueryVariable = (variable) => {
 // ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {
+  const [finished, setFinished] = useState(false);
   const theme = useTheme();
   const { isLoggedIn } = useAuth();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -93,7 +94,8 @@ const Login = () => {
         setCurrentWorker(response.data);
       })
       .catch((error) => {
-        alert("fail get current worker");
+        // alert("fail get current worker");
+        console.log("fail get current worker");
         console.log(error);
       });
   }, []);
@@ -143,10 +145,11 @@ const Login = () => {
               if (response.success === true) {
                 //showBlockSuccessUIModalRef.current.click();
                 //setNoPayment(false);
-                alert("Payment successful");
+                // alert("Payment successful");
+                setFinished(true);
                 //let body = { status: "Open", is_paid: "true" };
                 //updateOrderStatus(datacreate._id, body).then((response) => {
-                  //console.log("response update orfder status", response);
+                //console.log("response update orfder status", response);
                 //});
 
                 //TODO: vaciar carrito y eliminar datos de localstorage y de indexDB
@@ -164,6 +167,29 @@ const Login = () => {
         });
     });
   };
+
+  if (finished)
+    return (
+      <AuthWrapper1>
+        <Grid
+          container
+          direction="column"
+          justifyContent="flex-end"
+          sx={{ minHeight: "100vh" }}
+        >
+          <Grid item xs={12}>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              sx={{ minHeight: "calc(100vh - 68px)" }}
+            >
+              <Typography>{`Payment Successful. Thank You.`}</Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+      </AuthWrapper1>
+    );
 
   if (!change)
     return (
@@ -264,7 +290,17 @@ const Login = () => {
 
                     <Grid item xs={12}>
                       {/* <AuthLogin /> */}
-                      <Typography>{`Tips   $${price}`}</Typography>
+                      {/* <Typography>{`Tips   $${price}`}</Typography> */}
+                      <TextField
+                        id="outlined-basic"
+                        label="Tip Amount"
+                        value={price}
+                        variant="outlined"
+                        fullWidth
+                        onChange={(e) => {
+                          setPrice(e.target.value);
+                        }}
+                      />
                     </Grid>
                     <Grid item xs={12}>
                       <Divider />

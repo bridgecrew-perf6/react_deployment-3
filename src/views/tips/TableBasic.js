@@ -44,7 +44,7 @@ export default function TableBasic() {
       axios
         .get(`http://52.90.192.153/api/userfirebase/${user?.id}`)
         .then((response) => {
-          console.log("table basic", response.data);
+          console.log(`http://52.90.192.153/api/orders/user/${user?.id}`);
           axios
             .get(`http://52.90.192.153/api/orders/user/${user?.id}`)
             .then((response) => {
@@ -58,6 +58,79 @@ export default function TableBasic() {
     }
   }, []);
 
+  const renderRows = () => {
+    if (user?.id === "ge9F5m4txyZpczSenHzL4L0bmW42") {
+      return (
+        <Table sx={{ minWidth: 350 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ pl: 3 }}>Worker</TableCell>
+              {/* <TableCell align="right">Status</TableCell> */}
+              {/* <TableCell align="right">Is Paid</TableCell> */}
+              <TableCell align="right" sx={{ pl: 3 }}>
+                Date
+              </TableCell>
+              <TableCell align="right">Total</TableCell>
+              {/* <TableCell align="right">Actions</TableCell> */}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((row) => (
+              <TableRow hover key={row.product_id}>
+                <TableCell sx={{ pl: 3 }} component="th" scope="row">
+                  {JSON.parse(row.product).name}
+                </TableCell>
+                {/* <TableCell align="right">{row.status}</TableCell> */}
+                {/* <TableCell align="right">
+                  {row.is_paid ? "Yes" : "No"}
+                </TableCell> */}
+                <TableCell align="right">
+                  <Moment format="YYYY/MM/DD HH:hh">{row.order_date}</Moment>
+                </TableCell>
+                <TableCell align="right">{`$${row.order_total}`}</TableCell>
+                {/* <TableCell align="right">
+                                      <SecondaryAction link="https://next.material-ui.com/components/tables/" />
+                                  </TableCell> */}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      );
+    }
+    return (
+      <Table sx={{ minWidth: 350 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            {/* <TableCell sx={{ pl: 3 }}>Order Number</TableCell> */}
+            {/* <TableCell align="right">Status</TableCell> */}
+            <TableCell align="right" sx={{ pl: 3 }}>
+              Date
+            </TableCell>
+            <TableCell align="right">Total</TableCell>
+            {/* <TableCell align="right">Actions</TableCell> */}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row) => (
+            <TableRow hover key={row.product_id}>
+              {/* <TableCell sx={{ pl: 3 }} component="th" scope="row">
+                {row.product_id}
+              </TableCell> */}
+              {/* <TableCell align="right">{row.status}</TableCell> */}
+              <TableCell align="right">
+                <Moment format="YYYY/MM/DD HH:hh">{row.order_date}</Moment>
+              </TableCell>
+              <TableCell align="right">{`$${row.order_total}`}</TableCell>
+              {/* <TableCell align="right">
+                                      <SecondaryAction link="https://next.material-ui.com/components/tables/" />
+                                  </TableCell> */}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  };
+
   // const getDate = (d) => new Date(d);
 
   return (
@@ -70,44 +143,7 @@ export default function TableBasic() {
           // secondary={<SecondaryAction link="https://next.material-ui.com/components/tables/" />}
         >
           {/* table */}
-          <TableContainer>
-            <Table sx={{ minWidth: 350 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ pl: 3 }}>Order Number</TableCell>
-                  {/* <TableCell align="right">Status</TableCell> */}
-                  <TableCell align="right">Is Paid</TableCell>
-                  <TableCell align="right" sx={{ pl: 3 }}>
-                    Date
-                  </TableCell>
-                  <TableCell align="right">Total</TableCell>
-                  {/* <TableCell align="right">Actions</TableCell> */}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.map((row) => (
-                  <TableRow hover key={row.product_id}>
-                    <TableCell sx={{ pl: 3 }} component="th" scope="row">
-                      {row.product_id}
-                    </TableCell>
-                    {/* <TableCell align="right">{row.status}</TableCell> */}
-                    <TableCell align="right">
-                      {row.is_paid ? "Yes" : "No"}
-                    </TableCell>
-                    <TableCell align="right">
-                      <Moment format="YYYY/MM/DD HH:hh">
-                        {row.order_date}
-                      </Moment>
-                    </TableCell>
-                    <TableCell align="right">{`$${row.order_total}`}</TableCell>
-                    {/* <TableCell align="right">
-                                            <SecondaryAction link="https://next.material-ui.com/components/tables/" />
-                                        </TableCell> */}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <TableContainer>{renderRows()}</TableContainer>
         </MainCard>
       </Grid>
     </Grid>
