@@ -143,10 +143,10 @@ const Login = () => {
                 //showBlockSuccessUIModalRef.current.click();
                 //setNoPayment(false);
                 alert("Payment successful");
-                let body = { status: "Open", is_paid: "true" };
-                updateOrderStatus(datacreate._id, body).then((response) => {
-                  console.log("response update orfder status", response);
-                });
+                //let body = { status: "Open", is_paid: "true" };
+                //updateOrderStatus(datacreate._id, body).then((response) => {
+                  //console.log("response update orfder status", response);
+                //});
 
                 //TODO: vaciar carrito y eliminar datos de localstorage y de indexDB
               }
