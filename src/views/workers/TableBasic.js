@@ -14,7 +14,11 @@ import {
 import MainCard from "ui-component/cards/MainCard";
 import SecondaryAction from "ui-component/cards/CardSecondaryAction";
 import { gridSpacing } from "store/constant";
+import { IconTrash } from "@tabler/icons";
 
+import useAuth from "../../hooks/useAuth";
+import firebase from "firebase/app";
+import "firebase/auth";
 import axios from "axios";
 
 // table data
@@ -30,10 +34,19 @@ const rows = [
 
 // ==============================|| TABLE - BASIC ||============================== //
 
+const deleteUser = async (id, getData) => {
+  axios
+    .delete(`http://52.90.192.153/api/products/users/${id}`)
+    .then(async (response) => await getData())
+    .catch((error) => console.log(error));
+};
+
 export default function TableBasic(props) {
   const [data, setData] = useState([]);
+  const { logout, user } = useAuth();
 
   useEffect(() => {
+    console.log(props.data);
     setData(props.data);
   }, [props]);
 
@@ -58,7 +71,7 @@ export default function TableBasic(props) {
                                         Date
                                     </TableCell>
                                     <TableCell align="right">Total</TableCell> */}
-                  {/* <TableCell align="right">Actions</TableCell> */}
+                  <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -74,6 +87,13 @@ export default function TableBasic(props) {
                     {/* <TableCell align="right">
                                             <SecondaryAction link="https://next.material-ui.com/components/tables/" />
                                         </TableCell> */}
+                    <TableCell align="right">
+                      <IconTrash
+                        onClick={async () =>
+                          await deleteUser(row.idFirebase, props.getData)
+                        }
+                      />
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

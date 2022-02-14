@@ -65,8 +65,8 @@ export default function TableBasic() {
           <TableHead>
             <TableRow>
               <TableCell sx={{ pl: 3 }}>Worker</TableCell>
-              {/* <TableCell align="right">Status</TableCell> */}
-              {/* <TableCell align="right">Is Paid</TableCell> */}
+              <TableCell>Local</TableCell>
+              <TableCell align="right">ID</TableCell>
               <TableCell align="right" sx={{ pl: 3 }}>
                 Date
               </TableCell>
@@ -80,7 +80,8 @@ export default function TableBasic() {
                 <TableCell sx={{ pl: 3 }} component="th" scope="row">
                   {JSON.parse(row.product).name}
                 </TableCell>
-                {/* <TableCell align="right">{row.status}</TableCell> */}
+                <TableCell>{JSON.parse(row.product).local}</TableCell>
+                <TableCell align="right">{row._id}</TableCell>
                 {/* <TableCell align="right">
                   {row.is_paid ? "Yes" : "No"}
                 </TableCell> */}

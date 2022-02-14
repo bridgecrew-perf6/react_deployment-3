@@ -183,8 +183,11 @@ const Login = () => {
               justifyContent="center"
               alignItems="center"
               sx={{ minHeight: "calc(100vh - 68px)" }}
+              direction="column"
             >
-              <Typography>{`Payment Successful. Thank You.`}</Typography>
+              <Typography>{"Payment Successful. Thank You."}</Typography>
+              <Typography>{`Transaction Details:`}</Typography>
+              <Typography>{`Paid: ${price} to ${currentWorker.name} at ${currentWorker.local}`}</Typography>
             </Grid>
           </Grid>
         </Grid>

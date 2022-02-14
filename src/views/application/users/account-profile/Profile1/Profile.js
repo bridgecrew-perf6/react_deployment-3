@@ -34,6 +34,7 @@ import {
   IconPhone,
   IconMapPin,
   IconBuildingBank,
+  IconUser,
 } from "@tabler/icons";
 import PhonelinkRingTwoToneIcon from "@mui/icons-material/PhonelinkRingTwoTone";
 import PinDropTwoToneIcon from "@mui/icons-material/PinDropTwoTone";
@@ -106,7 +107,7 @@ const Profile = () => {
             title={
               <Grid container spacing={2} alignItems="center">
                 <Grid item>
-                  <Avatar alt="User 1" src={Avatar3} />
+                  <IconUser />
                 </Grid>
                 <Grid item xs zeroMinWidth>
                   <Typography align="left" variant="subtitle1">
@@ -197,7 +198,7 @@ const Profile = () => {
           title={
             <Grid container spacing={2} alignItems="center">
               <Grid item>
-                <Avatar alt="User 1" src={Avatar1} />
+                <IconUser />
               </Grid>
               <Grid item xs zeroMinWidth>
                 <Typography align="left" variant="subtitle1">

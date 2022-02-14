@@ -33,7 +33,7 @@ const Workers = () => {
   }, []);
   return (
     <MainCard title="Workers">
-      <TableBasic data={data} />
+      <TableBasic data={data} getData={async () => getData()} />
 
       <SimpleModal getData={async () => getData()} />
     </MainCard>
