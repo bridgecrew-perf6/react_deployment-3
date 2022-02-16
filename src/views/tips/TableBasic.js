@@ -104,24 +104,26 @@ export default function TableBasic() {
           <TableRow>
             {/* <TableCell sx={{ pl: 3 }}>Order Number</TableCell> */}
             {/* <TableCell align="right">Status</TableCell> */}
-            <TableCell align="right" sx={{ pl: 3 }}>
+            <TableCell align="left">ID</TableCell>
+            <TableCell align="left" sx={{ pl: 3 }}>
               Date
             </TableCell>
-            <TableCell align="right">Total</TableCell>
+            <TableCell align="left">Total</TableCell>
             {/* <TableCell align="right">Actions</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
             <TableRow hover key={row.product_id}>
+              <TableCell align="left">{row._id}</TableCell>
               {/* <TableCell sx={{ pl: 3 }} component="th" scope="row">
                 {row.product_id}
               </TableCell> */}
               {/* <TableCell align="right">{row.status}</TableCell> */}
-              <TableCell align="right">
+              <TableCell align="left">
                 <Moment format="YYYY/MM/DD HH:hh">{row.order_date}</Moment>
               </TableCell>
-              <TableCell align="right">{`$${row.order_total}`}</TableCell>
+              <TableCell align="left">{`$${row.order_total}`}</TableCell>
               {/* <TableCell align="right">
                                       <SecondaryAction link="https://next.material-ui.com/components/tables/" />
                                   </TableCell> */}

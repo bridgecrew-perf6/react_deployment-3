@@ -15,6 +15,7 @@ import MainCard from "ui-component/cards/MainCard";
 import SecondaryAction from "ui-component/cards/CardSecondaryAction";
 import { gridSpacing } from "store/constant";
 import axios from "axios";
+import { IconTrash } from "@tabler/icons";
 
 // table data
 function createData(name, description) {
@@ -28,6 +29,13 @@ const rows = [
   createData("Airport/Bus/Train", "Airport and Terminal Bus / Train"),
   createData("Malls/Supermaket", "Shoping Malls and Supermarkets"),
 ];
+
+const deleteCategory = async (id, getData) => {
+  axios
+    .delete(`http://52.90.192.153/api/categories/${id}`)
+    .then(async (response) => await getData())
+    .catch((error) => console.log(error));
+};
 
 // ==============================|| TABLE - BASIC ||============================== //
 
@@ -59,7 +67,7 @@ export default function TableBasic(props) {
                                         Date
                                     </TableCell>
                                     <TableCell align="right">Total</TableCell> */}
-                  {/* <TableCell align="right">Actions</TableCell> */}
+                  <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -69,6 +77,13 @@ export default function TableBasic(props) {
                       {row.name}
                     </TableCell>
                     <TableCell align="left">{row.descr}</TableCell>
+                    <TableCell align="right">
+                      <IconTrash
+                        onClick={async () =>
+                          await deleteCategory(row._id, props.getData)
+                        }
+                      />
+                    </TableCell>
 
                     {/* <TableCell align="right">
                                             <SecondaryAction link="https://next.material-ui.com/components/tables/" />

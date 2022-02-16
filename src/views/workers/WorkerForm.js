@@ -3,7 +3,16 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 // material-ui
-import { Button, Grid, Stack, TextField, MenuItem } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Stack,
+  TextField,
+  MenuItem,
+  InputLabel,
+  Select,
+  FormControl,
+} from "@mui/material";
 
 // project imports
 import MainCard from "ui-component/cards/MainCard";
@@ -117,19 +126,17 @@ const LoginForms = ({ handleClose, getData }) => {
       .signInWithEmailAndPassword("info@tiptiptop.co", "123456789");
   };
 
-  // useEffect(() => {
-  //     axios
-  //         .get('')
-  //         .then((response) => {
-  //             console.log(response.data);
-  //             setCategories(response.data);
-  //         })
-  //         .catch((error) => {
-  //             console.log(error);
-  //         });
-  // }, []);
-
   useEffect(() => {
+    axios
+      .get("http://52.90.192.153/api/categories")
+      .then((response) => {
+        console.log(response.data);
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     axios
       .get("http://52.90.192.153/api/braintree/getToken")
       .then((response) => {
@@ -294,6 +301,7 @@ const LoginForms = ({ handleClose, getData }) => {
               }}
             />
           </Grid>
+
           {/* <Grid item xs={6}>
                         <TextField
                             label="Category"
@@ -303,7 +311,11 @@ const LoginForms = ({ handleClose, getData }) => {
                             margin="normal"
                             select
                             value={selectedCategory}
-                            onChange={handleChange}
+                            onChange={
+                              
+
+
+                            }
                         >
                             {categories.map((option) => (
                                 <MenuItem key={option.id} value={option.id}>
@@ -393,6 +405,41 @@ const LoginForms = ({ handleClose, getData }) => {
                 },
               }}
             />
+          </Grid>
+          <Grid item xs={6} sx={{ marginTop: 2 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={selectedCategory}
+                label="Category"
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                sx={{
+                  "& label.Mui-focused": {
+                    color: "#8b0b35",
+                  },
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "#747474",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#c4c4c4",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#8b0b35",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#8b0b35",
+                    },
+                  },
+                }}
+              >
+                {categories.map((item) => (
+                  <MenuItem value={item._id}>{item.name}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={6}>
             <TextField

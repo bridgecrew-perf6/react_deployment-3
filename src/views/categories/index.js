@@ -35,7 +35,7 @@ const Categories = () => {
 
   return (
     <MainCard title="Categories">
-      <TableBasic data={data} />
+      <TableBasic data={data} getData={async () => getData()} />
       <Divider />
 
       {/* <CardActions> */}
