@@ -15,7 +15,8 @@ import MainCard from "ui-component/cards/MainCard";
 import SecondaryAction from "ui-component/cards/CardSecondaryAction";
 import { gridSpacing } from "store/constant";
 import axios from "axios";
-import { IconTrash } from "@tabler/icons";
+import { IconTrash, IconPencil } from "@tabler/icons";
+import EditModal from "./EditModal";
 
 // table data
 function createData(name, description) {
@@ -41,6 +42,8 @@ const deleteCategory = async (id, getData) => {
 
 export default function TableBasic(props) {
   const [data, setData] = useState([]);
+  const [editModal, setEditModal] = useState(false);
+  const [category, setCategory] = useState(null);
 
   useEffect(() => {
     setData(props.data);
@@ -78,16 +81,18 @@ export default function TableBasic(props) {
                     </TableCell>
                     <TableCell align="left">{row.descr}</TableCell>
                     <TableCell align="right">
+                      <IconPencil
+                        onClick={() => {
+                          setEditModal(true);
+                          setCategory(row);
+                        }}
+                      />
                       <IconTrash
                         onClick={async () =>
                           await deleteCategory(row._id, props.getData)
                         }
                       />
                     </TableCell>
-
-                    {/* <TableCell align="right">
-                                            <SecondaryAction link="https://next.material-ui.com/components/tables/" />
-                                        </TableCell> */}
                   </TableRow>
                 ))}
               </TableBody>
@@ -95,6 +100,12 @@ export default function TableBasic(props) {
           </TableContainer>
         </MainCard>
       </Grid>
+      <EditModal
+        open={editModal}
+        setEditModal={setEditModal}
+        category={category}
+        getData={props.getData}
+      />
     </Grid>
   );
 }

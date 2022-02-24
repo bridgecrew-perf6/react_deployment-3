@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // material-ui
 import { Button, Grid, Stack, TextField } from "@mui/material";
@@ -32,11 +32,33 @@ const validationSchema = yup.object({
 
 // ==============================|| FORM VALIDATION - LOGIN FORMIK  ||============================== //
 
-const LoginForms = ({ handleClose, getData }) => {
+const LoginForms = ({ handleClose, getData, category }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
+  useEffect(() => {
+    console.log(category);
+    if (category) {
+      setName(category.name);
+      setDescription(category.descr);
+    }
+  }, []);
+
   const handleSave = async () => {
+    if (category) {
+      axios
+        .put(`http://52.90.192.153/api/categories/${category._id}`, {
+          name: name,
+          descr: description,
+        })
+        .then((response) => {
+          getData();
+          handleClose();
+        })
+        .catch((error) => console.log(error));
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
@@ -85,6 +107,7 @@ const LoginForms = ({ handleClose, getData }) => {
               fullWidth
               id="outlined-margin-normal"
               defaultValue=""
+              value={name}
               // helperText="Some important text"
               margin="normal"
               onChange={(e) => {
@@ -117,6 +140,7 @@ const LoginForms = ({ handleClose, getData }) => {
               fullWidth
               id="outlined-margin-normal"
               defaultValue=""
+              value={description}
               // helperText="Some important text"
               margin="normal"
               onChange={(e) => {

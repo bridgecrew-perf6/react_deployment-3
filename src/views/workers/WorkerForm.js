@@ -33,6 +33,7 @@ import "firebase/auth";
 
 // assets
 import LinkIcon from "@mui/icons-material/Link";
+import { set } from "lodash";
 
 /**
  * 'Enter your email'
@@ -75,7 +76,7 @@ useEffect(() => {
 const firebaseRegister = async (email, password) =>
   firebase.auth().createUserWithEmailAndPassword(email, password);
 
-const LoginForms = ({ handleClose, getData }) => {
+const LoginForms = ({ handleClose, getData, worker }) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [name, setName] = useState("");
@@ -92,6 +93,33 @@ const LoginForms = ({ handleClose, getData }) => {
   };
 
   const handleSave = async () => {
+    if (worker) {
+      const formData = new FormData();
+
+      axios
+        .put(`http://52.90.192.153/api/products/${worker.idFirebase}`, {
+          email: mail,
+          emailPaypal: paypal,
+          name: name,
+          local: local,
+          role: role,
+          category: selectedCategory,
+          phoneNumber: phone,
+        })
+        .then((response) => {
+          getData();
+          handleClose();
+        })
+        .catch((error) => console.log(error));
+      return;
+    }
+
+    //   emailPaypal: 'Info@tiptiptop.co',
+    // password: '123456789',
+    // descr: 'breve descripcion perfil',
+    // role: 'worker',
+    // phoneNumber: '45345345'
+
     await firebaseRegister(mail, password).then((datacusuarioreate) => {
       console.log("datacusuarioreate", datacusuarioreate.user.uid);
       const formData = new FormData();
@@ -102,7 +130,7 @@ const LoginForms = ({ handleClose, getData }) => {
       formData.append("name", name);
       formData.append("phoneNumber", phone);
       formData.append("printingType", "5ee5a2c62055cc54dc5ecf4a");
-      formData.append("category", "5ef37be1527af5690c290a7e");
+      formData.append("category", selectedCategory);
       formData.append("qty", Number(1));
       formData.append("price", Number(1));
       formData.append("weight", Number(1));
@@ -127,6 +155,17 @@ const LoginForms = ({ handleClose, getData }) => {
   };
 
   useEffect(() => {
+    if (worker) {
+      console.log("worker", worker);
+      setName(worker.name);
+      setMail(worker.email);
+      setLocal(worker.local);
+      setPaypal(worker.emailPaypal);
+      setSelectedCategory(worker.category._id);
+      setRole(worker.role);
+      setPhone(worker.phoneNumber);
+    }
+
     axios
       .get("http://52.90.192.153/api/categories")
       .then((response) => {
@@ -181,6 +220,7 @@ const LoginForms = ({ handleClose, getData }) => {
               fullWidth
               id="outlined-margin-normal"
               defaultValue=""
+              value={name}
               // helperText="Some important text"
               margin="normal"
               onChange={(e) => {
@@ -207,44 +247,48 @@ const LoginForms = ({ handleClose, getData }) => {
               }}
             />
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Email"
-              fullWidth
-              id="outlined-margin-normal"
-              defaultValue=""
-              // helperText="Some important text"
-              margin="normal"
-              onChange={(e) => {
-                setMail(e.target.value);
-              }}
-              sx={{
-                "& label.Mui-focused": {
-                  color: "#8b0b35",
-                },
-                "& .MuiInput-underline:after": {
-                  borderBottomColor: "#747474",
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#c4c4c4",
+          {!worker && (
+            <Grid item xs={6}>
+              <TextField
+                label="Email"
+                fullWidth
+                id="outlined-margin-normal"
+                defaultValue=""
+                value={mail}
+                // helperText="Some important text"
+                margin="normal"
+                onChange={(e) => {
+                  setMail(e.target.value);
+                }}
+                sx={{
+                  "& label.Mui-focused": {
+                    color: "#8b0b35",
                   },
-                  "&:hover fieldset": {
-                    borderColor: "#8b0b35",
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "#747474",
                   },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#8b0b35",
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#c4c4c4",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#8b0b35",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#8b0b35",
+                    },
                   },
-                },
-              }}
-            />
-          </Grid>
+                }}
+              />
+            </Grid>
+          )}
           <Grid item xs={6}>
             <TextField
               label="Phone"
               fullWidth
               id="outlined-margin-normal"
               defaultValue="+974"
+              value={phone}
               // helperText="Some important text"
               margin="normal"
               onChange={(e) => {
@@ -276,6 +320,7 @@ const LoginForms = ({ handleClose, getData }) => {
               label="Local"
               fullWidth
               id="outlined-margin-normal"
+              value={local}
               onChange={(e) => {
                 setLocal(e.target.value);
               }}
@@ -348,6 +393,7 @@ const LoginForms = ({ handleClose, getData }) => {
               fullWidth
               id="outlined-margin-normal"
               defaultValue=""
+              value={paypal}
               // helperText="Some important text"
               margin="normal"
               onChange={(e) => {
@@ -380,6 +426,7 @@ const LoginForms = ({ handleClose, getData }) => {
               fullWidth
               id="outlined-margin-normal"
               defaultValue=""
+              value={role}
               // helperText="Some important text"
               margin="normal"
               onChange={(e) => {
@@ -441,38 +488,40 @@ const LoginForms = ({ handleClose, getData }) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Password"
-              fullWidth
-              id="outlined-margin-normal"
-              defaultValue=""
-              // helperText="Some important text"
-              margin="normal"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              sx={{
-                "& label.Mui-focused": {
-                  color: "#8b0b35",
-                },
-                "& .MuiInput-underline:after": {
-                  borderBottomColor: "#747474",
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#c4c4c4",
+          {!worker && (
+            <Grid item xs={6}>
+              <TextField
+                label="Password"
+                fullWidth
+                id="outlined-margin-normal"
+                defaultValue=""
+                // helperText="Some important text"
+                margin="normal"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                sx={{
+                  "& label.Mui-focused": {
+                    color: "#8b0b35",
                   },
-                  "&:hover fieldset": {
-                    borderColor: "#8b0b35",
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "#747474",
                   },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#8b0b35",
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#c4c4c4",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#8b0b35",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#8b0b35",
+                    },
                   },
-                },
-              }}
-            />
-          </Grid>
+                }}
+              />
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Stack direction="row" justifyContent="flex-end">
               <AnimateButton>

@@ -14,23 +14,18 @@ import {
 import MainCard from "ui-component/cards/MainCard";
 import SecondaryAction from "ui-component/cards/CardSecondaryAction";
 import { gridSpacing } from "store/constant";
-import { IconTrash } from "@tabler/icons";
+import { IconTrash, IconPencil } from "@tabler/icons";
 
 import useAuth from "../../hooks/useAuth";
 import firebase from "firebase/app";
 import "firebase/auth";
 import axios from "axios";
+import EditModal from "./EditModal";
 
 // table data
 function createData(category, name) {
   return { category, name };
 }
-
-const rows = [
-  createData("NightClubs", "Mya Miller"),
-  createData("Restaurants", "Tommy Phillips"),
-  createData("Restaurants", "admin2@gmail.com"),
-];
 
 // ==============================|| TABLE - BASIC ||============================== //
 
@@ -44,6 +39,8 @@ const deleteUser = async (id, getData) => {
 export default function TableBasic(props) {
   const [data, setData] = useState([]);
   const { logout, user } = useAuth();
+  const [worker, setWorker] = useState([]);
+  const [editModal, setEditModal] = useState(false);
 
   useEffect(() => {
     console.log(props.data);
@@ -88,6 +85,12 @@ export default function TableBasic(props) {
                                             <SecondaryAction link="https://next.material-ui.com/components/tables/" />
                                         </TableCell> */}
                     <TableCell align="right">
+                      <IconPencil
+                        onClick={() => {
+                          setEditModal(true);
+                          setWorker(row);
+                        }}
+                      />
                       <IconTrash
                         onClick={async () =>
                           await deleteUser(row.idFirebase, props.getData)
@@ -101,6 +104,12 @@ export default function TableBasic(props) {
           </TableContainer>
         </MainCard>
       </Grid>
+      <EditModal
+        open={editModal}
+        setEditModal={setEditModal}
+        worker={worker}
+        getData={props.getData}
+      />
     </Grid>
   );
 }

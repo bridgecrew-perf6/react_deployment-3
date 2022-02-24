@@ -86,3 +86,20 @@ export const createProduct = (token, product) => {
       console.log(err);
     });
 };
+
+export const updateProduct = (token, product) => {
+  return fetch(`http://52.90.192.153/api/products`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "x-access-token": token,
+    },
+    body: product,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
